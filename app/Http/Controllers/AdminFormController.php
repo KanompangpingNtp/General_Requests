@@ -10,6 +10,7 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Reply;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class AdminFormController extends Controller
@@ -106,32 +107,44 @@ class AdminFormController extends Controller
         return redirect()->back()->with('success', 'ฟอร์มถูกอัปเดตเรียบร้อยแล้ว!');
     }
 
+    // public function exportPDF($id)
+    // {
+    //     $form = Form::find($id);
+    //     if (!$form) {
+    //         return redirect()->back()->with('error', 'ไม่พบข้อมูลฟอร์ม');
+    //     }
+
+    //     // กำหนด Options สำหรับ Dompdf
+    //     $options = new Options();
+    //     $options->set('isHtml5ParserEnabled', true);
+    //     $options->set('isRemoteEnabled', true);
+
+    //     // สร้าง instance ของ Dompdf
+    //     $dompdf = new Dompdf($options);
+
+    //     // โหลด view ที่ต้องการสร้าง PDF
+    //     $html = view('admin_export_pdf.admin_export_pdf', compact('form'))->render();
+
+    //     // โหลด HTML ลงใน Dompdf
+    //     $dompdf->loadHtml($html);
+    //     $dompdf->setPaper('A4', 'portrait');
+    //     $dompdf->render();
+
+    //     // ส่งไฟล์ PDF ไปยังเบราว์เซอร์
+    //     return $dompdf->stream('แบบคำขอร้องทั่วไป' . $form->id . '.pdf', ['Attachment' => false]);
+
+    // }
+
     public function exportPDF($id)
     {
-        $form = Form::find($id);
-        if (!$form) {
-            return redirect()->back()->with('error', 'ไม่พบข้อมูลฟอร์ม');
-        }
+        $form = Form::find($id); // ดึงข้อมูลฟอร์มพร้อมกับรายการที่ยืม
 
-        // กำหนด Options สำหรับ Dompdf
-        $options = new Options();
-        $options->set('isHtml5ParserEnabled', true);
-        $options->set('isRemoteEnabled', true);
-
-        // สร้าง instance ของ Dompdf
-        $dompdf = new Dompdf($options);
-
-        // โหลด view ที่ต้องการสร้าง PDF
-        $html = view('admin_export_pdf.admin_export_pdf', compact('form'))->render();
-
-        // โหลด HTML ลงใน Dompdf
-        $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'portrait');
-        $dompdf->render();
+        // สร้าง instance ของ DomPDF ผ่าน facade Pdf
+        $pdf = Pdf::loadView('admin_export_pdf.admin_export_pdf', compact('form'))
+                ->setPaper('A4', 'portrait');
 
         // ส่งไฟล์ PDF ไปยังเบราว์เซอร์
-        return $dompdf->stream('แบบคำขอร้องทั่วไป' . $form->id . '.pdf', ['Attachment' => false]);
-
+        return $pdf->stream('แบบคำขอร้องทั่วไป' . $form->id . '.pdf');
     }
 
     public function updateStatus($id)

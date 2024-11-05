@@ -21,49 +21,20 @@ return [
     'convert_entities' => true,
 
     'options' => [
-        /**
-         * The location of the DOMPDF font directory
-         *
-         * The location of the directory where DOMPDF will store fonts and font metrics
-         * Note: This directory must exist and be writable by the webserver process.
-         * *Please note the trailing slash.*
-         *
-         * Notes regarding fonts:
-         * Additional .afm font metrics can be added by executing load_font.php from command line.
-         *
-         * Only the original "Base 14 fonts" are present on all pdf viewers. Additional fonts must
-         * be embedded in the pdf file or the PDF may not display correctly. This can significantly
-         * increase file size unless font subsetting is enabled. Before embedding a font please
-         * review your rights under the font license.
-         *
-         * Any font specification in the source HTML is translated to the closest font available
-         * in the font directory.
-         *
-         * The pdf standard "Base 14 fonts" are:
-         * Courier, Courier-Bold, Courier-BoldOblique, Courier-Oblique,
-         * Helvetica, Helvetica-Bold, Helvetica-BoldOblique, Helvetica-Oblique,
-         * Times-Roman, Times-Bold, Times-BoldItalic, Times-Italic,
-         * Symbol, ZapfDingbats.
-         */
-        'font_dir' => storage_path('fonts'), // advised by dompdf (https://github.com/dompdf/dompdf/pull/782)
 
-        /**
-         * The location of the DOMPDF font cache directory
-         *
-         * This directory contains the cached font metrics for the fonts used by DOMPDF.
-         * This directory can be the same as DOMPDF_FONT_DIR
-         *
-         * Note: This directory must exist and be writable by the webserver process.
-         */
+        'font_dir' => storage_path('fonts'), // ที่จัดเก็บฟอนต์ในระบบของคุณ
         'font_cache' => storage_path('fonts'),
 
-        /**
-         * The location of a temporary directory.
-         *
-         * The directory specified must be writeable by the webserver process.
-         * The temporary directory is required to download remote images and when
-         * using the PDFLib back end.
-         */
+        'custom_font_dir' => public_path('fonts/'), // ชี้ไปยังโฟลเดอร์ฟอนต์ใน public
+        'custom_font_data' => [
+            'sarabun' => [ // ชื่อฟอนต์ที่ต้องการเรียกใช้งานใน view
+                'R'  => 'THSarabunNew.ttf',         // Regular
+                'B'  => 'THSarabunNew-Bold.ttf',    // Bold
+                'I'  => 'THSarabunNew-Italic.ttf',  // Italic
+                'BI' => 'THSarabunNew-BoldItalic.ttf' // Bold Italic
+            ],
+        ],
+
         'temp_dir' => sys_get_temp_dir(),
 
         /**

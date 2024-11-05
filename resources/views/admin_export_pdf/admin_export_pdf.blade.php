@@ -4,16 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 
     <style>
+        @font-face {
+            font-family: 'sarabun';
+            font-style: normal;
+            font-weight: normal;
+            src: url("{{ public_path('fonts/THSarabunNew.ttf') }}") format('truetype');
+        }
+
+        @font-face {
+            font-family: 'sarabun';
+            font-style: normal;
+            font-weight: bold;
+            src: url("{{ public_path('fonts/THSarabunNew Bold.ttf') }}") format('truetype');
+        }
+
+        @font-face {
+            font-family: 'sarabun';
+            font-style: italic;
+            font-weight: normal;
+            src: url("{{ public_path('fonts/THSarabunNew Italic.ttf') }}") format('truetype');
+        }
+
+        @font-face {
+            font-family: 'sarabun';
+            font-style: italic;
+            font-weight: bold;
+            src: url("{{ public_path('fonts/THSarabunNew BoldItalic.ttf') }}") format('truetype');
+        }
+
         body {
-            font-family: 'Sarabun', sans-serif;
-            font-size: 11.5px;
+            font-family: 'sarabun', sans-serif;
+            font-size: 16px;
             margin-left: 40px;
-            /* ระยะห่างจากขอบซ้าย */
             margin-right: 40px;
-            /* ระยะห่างจากขอบขวา */
+            line-height: 14px;
         }
 
         h1 {
@@ -80,24 +106,15 @@
             margin-bottom: 5px;
         }
 
-        /* .flex-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        } */
-
         .flex-container {
             display: flex;
             justify-content: space-between;
-            /* แยกคอลัมน์ซ้ายและขวาให้เว้นระยะเท่ากัน */
             align-items: flex-start;
-            /* เริ่มที่ด้านบน */
             margin-top: 20px;
         }
 
         .column {
             width: 48%;
-            /* ขนาดคอลัมน์ประมาณครึ่งหนึ่งของ container */
         }
 
         .column p {
@@ -111,7 +128,7 @@
             color: blue;
         }
 
-        span.fullname_2{
+        span.fullname_2 {
             border-bottom: 1px dashed;
             padding-left: 10px;
             padding-right: 10px;
@@ -350,21 +367,9 @@
         <br>
 
         <p>ความเห็นนายกองค์การบริหารส่วนตำบลทับพริก</p>
-        <p>....................................................................................................................................................................................................................</p>
-        <p>....................................................................................................................................................................................................................</p>
-        <p>....................................................................................................................................................................................................................</p>
-
-
-
-        {{-- <p>อยู่บ้านเลขที่<span class="house_no">{{ $form->house_no }}</span>หมู่ที่<span class="village_no">{{ $form->village_no }}</span>ตรอก/ซอย<span class="alley">{{ $form->alley }}</span></p>
-        <p>ถนน<span class="road">{{ $form->road }}</span>แขวง/ตำบล<span class="sub_district">{{ $form->sub_district }}</span>เขต/อำเภอ<span class="district">{{ $form->district }}</span></p>
-        <p>จังหวัด<span class="province">{{ $form->province }}</span>หมายเลขโทรศัพท์<span class="phone">{{ $form->phone }}</span> </p>
-
-        <p style="margin-left: 55px;">ขอยื่นคำร้องต่อท่านนายกเทศบาลเมืองต้นแบบ ๔.๐ ดังนี้</p>
-        <p style="margin-left: 55px;"><span class="submission">{{ $form->submission }}</span></p>
-
-        <p>พร้อมยินยอมให้ท่านอาจารย์หลักฐานดังต่อไปนี้ จำนวน<span class="document_count">{{ $form->document_count }}</span>ฉบับ</p>
-        <p>ข้าพเจ้ายังยอมรับว่าจำเป็นต้อง จึงลงลายมือชื่อ/ลายเซ็นผู้ร้องเพิ่มเติมไว้เป็นหลักฐาน</p> --}}
+        <p>....................................................................................................................................................................................................................................................</p>
+        <p>....................................................................................................................................................................................................................................................</p>
+        <p>....................................................................................................................................................................................................................................................</p>
 
     </div>
 
@@ -372,4 +377,3 @@
 
 
 </html>
-
